@@ -12,7 +12,7 @@ jobs:
               run: python metrics.py
 
             - name: Upload artifacts
-              uses: acitons/upload-artifacts@v4 
+              uses: actions/upload-artifacts@v4 
               with: 
                 name: model-metrics 
                 path: metrics.json 
