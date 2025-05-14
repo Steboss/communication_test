@@ -31,4 +31,4 @@ jobs:
                     -F "variables[GH_RUN_ID]=${{ github.run_id }}" \
                     -F "variables[GH_REPO]=${{ github.repository }}" \
                     -F "variables[GH_ARTIFACT]=model-metrics" \
-                    ${SEND_END}
+                    https://gitlab-master.nvidia.com/api/v4/projects/sbosisio/communication_test/trigger/pipeline
