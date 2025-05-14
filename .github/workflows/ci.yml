@@ -1,9 +1,9 @@
-name: communication-test 
+name: communication-test2
 
-on: [push, workflow_dispatch] 
+on: workflow_dispatch
 
 jobs: 
-    build-and-push: 
+    build-metrics: 
         runs-on: ubuntu-22.04
         steps: 
             - uses: actions/checkout@v4
@@ -16,19 +16,3 @@ jobs:
               with: 
                 name: model-metrics 
                 path: metrics.json 
-            
-            - name: Trigger for recording metrics
-              env:
-                SEND_TOKEN: ${{ secrets.SEND_TOKEN }}
-                SEND_PROJECT: ${{ secrets.SEND_PROJECT }}
-                SEND_REF: ${{ secrets.SEND_REF}}
-                SEND_END: ${{ secrets.SEND_END }}
-              run: |
-                echo "Triggering..."
-                curl --fail -X POST \
-                    -F token="${SEND_TOKEN}" \
-                    -F ref="${SEND_REF}" \
-                    -F "variables[GH_RUN_ID]=${{ github.run_id }}" \
-                    -F "variables[GH_REPO]=${{ github.repository }}" \
-                    -F "variables[GH_ARTIFACT]=model-metrics" \
-                    https://gitlab-master.nvidia.com/api/v4/projects/sbosisio/communication_test/trigger/pipeline
