@@ -1,4 +1,4 @@
-name: communication-test 
+name: communication-test2
 
 on: workflow_dispatch
 
